@@ -1,6 +1,5 @@
 package com.liraneto.model.xml.character.weaponList;
 
-import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

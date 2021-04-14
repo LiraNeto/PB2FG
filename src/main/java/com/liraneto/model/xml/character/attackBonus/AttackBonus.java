@@ -1,7 +1,6 @@
 package com.liraneto.model.xml.character.attackBonus;
 
 import com.liraneto.model.xml.elementosType.ElementoNumber;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

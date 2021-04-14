@@ -1,7 +1,5 @@
 package com.liraneto.model.xml.traitList;
 
-import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
-
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlTransient;
