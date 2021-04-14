@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @NoArgsConstructor
 @Data
 public class Totals {
-    private ElementoNumber general = ElementoNumber.elementoNumberDez();
+    private ElementoNumber general;
 
     public Totals(Object general) {
         if (general != null) this.general = new ElementoNumber(general);

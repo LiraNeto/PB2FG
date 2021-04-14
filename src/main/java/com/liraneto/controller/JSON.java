@@ -22,7 +22,7 @@ public class JSON {
         }
     }
 
-    public static void jsonToFichaJSON2 (String json){
+    public static void printFichaJSONFromFile (String json){
         try {
             FichaJSON fichaJSON;
             ObjectMapper objectMapper = new ObjectMapper();
@@ -33,5 +33,19 @@ public class JSON {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static FichaJSON getFichaJSONFromFile (String json){
+        try {
+            FichaJSON fichaJSON;
+            ObjectMapper objectMapper = new ObjectMapper();
+            fichaJSON = objectMapper.readValue(Paths.get(json).toFile(), FichaJSON.class);
+            return fichaJSON;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

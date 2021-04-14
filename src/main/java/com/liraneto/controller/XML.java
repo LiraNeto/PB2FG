@@ -13,7 +13,7 @@ import com.liraneto.model.xml.character.skillList.Skill;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
 import com.liraneto.model.xml.character.weaponList.Damage;
 import com.liraneto.model.xml.character.weaponList.Weapon;
-import com.liraneto.model.xml.traitList.Trait;
+import com.liraneto.model.xml.character.traitList.Trait;
 import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

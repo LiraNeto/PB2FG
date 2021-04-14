@@ -1,4 +1,4 @@
-package com.liraneto.model.xml.character.ac;
+package com.liraneto.model.xml.character.charGenTracker;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class AC {
-
-    private Sources sources;
-    private Totals totals;
+public class CharGenTracker {
+    private CharGenTrackerAbilities abilities;
 }

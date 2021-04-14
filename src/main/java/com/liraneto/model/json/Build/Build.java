@@ -19,7 +19,7 @@ public class Build {
     @JsonProperty("class")
     private String classe;
 
-    private String level;
+    private int level;
 
     private String ancestry;
 

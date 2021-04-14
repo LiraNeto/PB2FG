@@ -3,6 +3,7 @@ package com.liraneto.model.xml.character;
 import com.liraneto.model.xml.character.abilities.Abilities;
 import com.liraneto.model.xml.character.ac.AC;
 import com.liraneto.model.xml.character.attackBonus.AttackBonus;
+import com.liraneto.model.xml.character.charGenTracker.CharGenTracker;
 import com.liraneto.model.xml.character.classes.ClassesList;
 import com.liraneto.model.xml.character.coins.Coins;
 import com.liraneto.model.xml.character.encumbrance.Encumbrance;
@@ -24,9 +25,9 @@ import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
 import com.liraneto.model.xml.elementosType.ElementoToken;
 import com.liraneto.model.xml.elementosType.ElementoWindowReference;
-import com.liraneto.model.xml.spellSet.SpellSet;
-import com.liraneto.model.xml.temp.Temp;
-import com.liraneto.model.xml.traitList.TraitList;
+import com.liraneto.model.xml.character.spellSet.SpellSet;
+import com.liraneto.model.xml.character.temp.Temp;
+import com.liraneto.model.xml.character.traitList.TraitList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -50,6 +51,9 @@ public class Character {
 
     @XmlElement(name="backgroundlink")
     private ElementoWindowReference backgroundLink;
+
+    @XmlElement(name = "chargentracker")
+    private CharGenTracker charGenTracker;
 
     private ClassesList classes;
 

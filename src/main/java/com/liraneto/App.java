@@ -1,7 +1,9 @@
 package com.liraneto;
 
 import com.liraneto.controller.JSON;
+import com.liraneto.controller.JSON2XML;
 import com.liraneto.controller.XML;
+import com.liraneto.model.json.FichaJSON;
 import com.liraneto.model.xml.FichaXML;
 import com.liraneto.model.xml.character.Character;
 import com.liraneto.model.xml.character.abilities.Abilities;
@@ -45,10 +47,10 @@ import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
 import com.liraneto.model.xml.elementosType.ElementoToken;
 import com.liraneto.model.xml.elementosType.ElementoWindowReference;
-import com.liraneto.model.xml.spellSet.SpellSet;
-import com.liraneto.model.xml.temp.Temp;
-import com.liraneto.model.xml.traitList.Trait;
-import com.liraneto.model.xml.traitList.TraitList;
+import com.liraneto.model.xml.character.spellSet.SpellSet;
+import com.liraneto.model.xml.character.temp.Temp;
+import com.liraneto.model.xml.character.traitList.Trait;
+import com.liraneto.model.xml.character.traitList.TraitList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -65,118 +67,25 @@ public class App
     {
         //generateItemConstructor();
 
-        FichaXML fichaXml = new FichaXML();
-        fichaXml.setCharacter(generateCharacter());
 
+
+        FichaJSON fichaJSON = JSON.getFichaJSONFromFile("D:\\Documentos\\Git\\b.json");
+
+        FichaXML fichaXml = new FichaXML();
+
+        JSON2XML.fichaXMLConvertAbilities(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertAC(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertBackground(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertCharGenTracker(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertClassLevel(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertLevel(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertName(fichaXml, fichaJSON);
+        JSON2XML.fichaXMLConvertRace(fichaXml, fichaJSON);
 
         XML xml = new XML(fichaXml);
         xml.jaxbObjectToXML();
 
-        String json = "{\"success\":true," +
-                "\"build\":" +
-                "{" +
-                "\"name\":\"Teste\"," +
-                "\"class\":\"Fighter\"," +
-                "\"level\":1," +
-                "\"ancestry\":\"Human\"," +
-                "\"heritage\":\"\"," +
-                "\"background\":\"Barkeep\"," +
-                "\"alignment\":\"N\"," +
-                "\"gender\":\"Not set\"," +
-                "\"age\":\"Not set\"," +
-                "\"deity\":\"Not set\"," +
-                "\"size\":2," +
-                "\"keyability\":\"str\"," +
-                "\"languages\":[]," +
-                "\"attributes\":" +
-                "{" +
-                "\"ancestryhp\":8," +
-                "\"classhp\":10," +
-                "\"bonushp\":0," +
-                "\"bonushpPerLevel\":0," +
-                "\"speed\":25," +
-                "\"speedBonus\":0" +
-                "}," +
-                "\"abilities\":" +
-                "{" +
-                "\"str\":16," +
-                "\"dex\":12," +
-                "\"con\":10," +
-                "\"int\":10," +
-                "\"wis\":12," +
-                "\"cha\":10" +
-                "}," +
-                "\"proficiencies\":" +
-                "{" +
-                "\"classDC\":2," +
-                "\"perception\":4," +
-                "\"fortitude\":4," +
-                "\"reflex\":4," +
-                "\"will\":2," +
-                "\"heavy\":2," +
-                "\"medium\":2," +
-                "\"light\":2," +
-                "\"unarmored\":2," +
-                "\"advanced\":2," +
-                "\"martial\":4," +
-                "\"simple\":4," +
-                "\"unarmed\":4," +
-                "\"castingArcane\":0," +
-                "\"castingDivine\":0," +
-                "\"castingOccult\":0," +
-                "\"castingPrimal\":0," +
-                "\"acrobatics\":0," +
-                "\"arcana\":0," +
-                "\"athletics\":0," +
-                "\"crafting\":0," +
-                "\"deception\":0," +
-                "\"diplomacy\":2," +
-                "\"intimidation\":0," +
-                "\"medicine\":0," +
-                "\"nature\":0," +
-                "\"occultism\":0," +
-                "\"performance\":0," +
-                "\"religion\":0," +
-                "\"society\":0," +
-                "\"stealth\":0," +
-                "\"survival\":0," +
-                "\"thievery\":0" +
-                "}," +
-                "\"feats\":[[\"Shield Block\",\"null\"],[\"Hobnobber\",\"null\"]]," +
-                "\"specials\":[\"Attack of Opportunity\"," +
-                "\"Shield Block\"," +
-                "\"\"]," +
-                "\"lores\":[[\"Alcohol\",2]]," +
-                "\"equipment\":[]," +
-                "\"specificProficiencies\":" +
-                "{" +
-                "\"trained\":[]," +
-                "\"expert\":[]," +
-                "\"master\":[]," +
-                "\"legendary\":[]" +
-                "}," +
-                "\"weapons\":[]," +
-                "\"money\":" +
-                "{" +
-                "\"pp\":0," +
-                "\"gp\":15," +
-                "\"sp\":0," +
-                "\"cp\":0" +
-                "}," +
-                "\"armor\":[]," +
-                "\"spellCasters\":[]," +
-                "\"formula\":[]," +
-                "\"pets\":[]," +
-                "\"acTotal\":" +
-                "{" +
-                "\"acProfBonus\":3," +
-                "\"acAbilityBonus\":1," +
-                "\"acItemBonus\":0," +
-                "\"acTotal\":14" +
-                "}" +
-                "}" +
-                "}";
-        JSON.jsonToFichaJSON2("D:\\Documentos\\Git\\a.json");
+
 
     }
 

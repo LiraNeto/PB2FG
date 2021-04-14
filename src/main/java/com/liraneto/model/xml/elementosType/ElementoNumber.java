@@ -1,5 +1,6 @@
 package com.liraneto.model.xml.elementosType;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @NoArgsConstructor
+@Getter
 public class ElementoNumber extends Elemento {
 
     @XmlTransient

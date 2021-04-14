@@ -1,4 +1,4 @@
-package com.liraneto.model.xml.traitList;
+package com.liraneto.model.xml.character.traitList;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAnyElement;

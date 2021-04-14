@@ -1,4 +1,4 @@
-package com.liraneto.model.xml.traitList;
+package com.liraneto.model.xml.character.traitList;
 
 import com.liraneto.model.xml.elementosType.ElementoFormattedText;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
