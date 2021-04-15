@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @NoArgsConstructor
-public class Skill {
+    public class Skill {
     @XmlElement(name = "armorcheckmultiplier")
     private ElementoNumber armorCheckMultiplier;
 

@@ -19,15 +19,15 @@ import com.liraneto.model.xml.character.skillList.SkillList;
 import com.liraneto.model.xml.character.skillPoints.SkillPoints;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbilityList;
 import com.liraneto.model.xml.character.speed.Speed;
+import com.liraneto.model.xml.character.spellSet.SpellSet;
+import com.liraneto.model.xml.character.temp.Temp;
+import com.liraneto.model.xml.character.traitList.TraitList;
 import com.liraneto.model.xml.character.wealth.Wealth;
 import com.liraneto.model.xml.character.weaponList.WeaponList;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
 import com.liraneto.model.xml.elementosType.ElementoToken;
 import com.liraneto.model.xml.elementosType.ElementoWindowReference;
-import com.liraneto.model.xml.character.spellSet.SpellSet;
-import com.liraneto.model.xml.character.temp.Temp;
-import com.liraneto.model.xml.character.traitList.TraitList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

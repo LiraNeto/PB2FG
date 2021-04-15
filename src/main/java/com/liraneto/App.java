@@ -38,19 +38,18 @@ import com.liraneto.model.xml.character.skillPoints.SkillPoints;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbilityList;
 import com.liraneto.model.xml.character.speed.Speed;
+import com.liraneto.model.xml.character.spellSet.SpellSet;
+import com.liraneto.model.xml.character.temp.Temp;
+import com.liraneto.model.xml.character.traitList.Trait;
+import com.liraneto.model.xml.character.traitList.TraitList;
 import com.liraneto.model.xml.character.wealth.Wealth;
 import com.liraneto.model.xml.character.weaponList.Damage;
 import com.liraneto.model.xml.character.weaponList.DamageList;
-import com.liraneto.model.xml.character.weaponList.Weapon;
 import com.liraneto.model.xml.character.weaponList.WeaponList;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
 import com.liraneto.model.xml.elementosType.ElementoToken;
 import com.liraneto.model.xml.elementosType.ElementoWindowReference;
-import com.liraneto.model.xml.character.spellSet.SpellSet;
-import com.liraneto.model.xml.character.temp.Temp;
-import com.liraneto.model.xml.character.traitList.Trait;
-import com.liraneto.model.xml.character.traitList.TraitList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -67,26 +66,16 @@ public class App
     {
         //generateItemConstructor();
 
+        FichaJSON fichaJSON = JSON.getFichaJSONFromFile("D:\\Documentos\\Git\\1.json");
 
+        JSON2XML conversor = new JSON2XML();
+        conversor.setFichaJSON(fichaJSON);
+        conversor.ConverterJSON2XML();
 
-        FichaJSON fichaJSON = JSON.getFichaJSONFromFile("D:\\Documentos\\Git\\b.json");
-
-        FichaXML fichaXml = new FichaXML();
-
-        JSON2XML.fichaXMLConvertAbilities(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertAC(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertBackground(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertCharGenTracker(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertClassLevel(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertLevel(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertName(fichaXml, fichaJSON);
-        JSON2XML.fichaXMLConvertRace(fichaXml, fichaJSON);
+        FichaXML fichaXml = conversor.getFichaXML();
 
         XML xml = new XML(fichaXml);
         xml.jaxbObjectToXML();
-
-
-
     }
 
     public static Character generateCharacter(){
@@ -196,7 +185,7 @@ public class App
         proficiencies.setDefensesList(defensesList);
         character.setProficiencies(proficiencies);
 
-        Proficiency proficiency1 = new Proficiency("Weapons: Expert in simple weapons. Expert in martial weapons. " +
+        Proficiency proficiency1 = new Proficiency("Weapon: Expert in simple weapons. Expert in martial weapons. " +
                 "Trained in advanced weapons. Expert in unarmed attacks.");
 
         ProficiencyList proficiencyList = new ProficiencyList();
@@ -271,7 +260,7 @@ public class App
         Damage damage1 = new Damage(0, 2, "d8", "strength", "slashing");
         DamageList damageList = new DamageList();
         damageList.putEntry(damage1);
-        Weapon weapon1 = new Weapon(3, 0, 20, damageList, 1, "Longsword",
+        com.liraneto.model.xml.character.weaponList.Weapon weapon1 = new com.liraneto.model.xml.character.weaponList.Weapon(3, 0, 20, damageList, 1, "Longsword",
                 new ElementoWindowReference("item", "....inventorylist.id-00001"), "Versatile P", 0);
         WeaponList weaponList = new WeaponList();
         weaponList.putEntry(weapon1);

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public enum ProficiencyLevelEnum {
+    UNTRAINED (null, 0),
 
     TRAINED ("trained", 2),
 
@@ -17,7 +18,7 @@ public enum ProficiencyLevelEnum {
 
     LEGENDARY("legendary", 8),
 
-    PROFICIENCY_LEVEL_NOT_FOUND ("PROFICIENCY_LEVEL_NOT_FOUND", 0);
+    PROFICIENCY_LEVEL_NOT_FOUND ();
     ;
 
     private String name;
@@ -29,6 +30,16 @@ public enum ProficiencyLevelEnum {
 
         for (ProficiencyLevelEnum proficiency : ProficiencyLevelEnum.values()) {
             if (proficiency.getBonus() == proficiecyBonus)
+                return proficiency;
+        }
+
+        return ProficiencyLevelEnum.PROFICIENCY_LEVEL_NOT_FOUND;
+    }
+
+    public static ProficiencyLevelEnum getProficiencyLevelEnum (int bonus){
+
+        for (ProficiencyLevelEnum proficiency : ProficiencyLevelEnum.values()) {
+            if (proficiency.getBonus() == bonus)
                 return proficiency;
         }
 

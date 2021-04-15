@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.swing.*;
 import java.util.List;
 
 @Data
@@ -54,15 +53,15 @@ public class Build {
 
     private List<List<String>> lores;
 
-    private List<String> equipment;
+    private List<List<String>> equipment;
 
     private SpecificProficiencies specificProficiencies;
 
-    private List<String> weapons;
+    private List<Weapon> weapons;
 
     private Money money;
 
-    private List<String> armor;
+    private List<Armor> armor;
 
     private List<String> spellCasters;
 

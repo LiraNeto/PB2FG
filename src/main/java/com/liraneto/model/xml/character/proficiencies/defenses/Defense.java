@@ -16,7 +16,7 @@ public class Defense {
     @XmlElement(name = "proflevel")
     private ElementoString profLevel;
 
-    public Defense(String name, String prof, String profLevel) {
+    public Defense(Object name, Object prof, Object profLevel) {
         if (name != null) this.name = new ElementoString(name);
         if (prof != null) this.prof = new ElementoNumber(prof);
         if (profLevel != null) this.profLevel = new ElementoString(profLevel);
