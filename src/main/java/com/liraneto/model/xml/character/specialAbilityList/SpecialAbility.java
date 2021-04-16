@@ -50,8 +50,12 @@ public class SpecialAbility {
     public String toString() {
         return name.toString()
                 .toUpperCase()
+                .replace("-", "_")
                 .replace("\"", "")
+                .replace("(", "")
+                .replace(")", "")
                 .replace(" ", "_")
+                .replace("___", "_")
                 .replace("'", "") + "(" +
                 className + ", " +
                 level + ", " +

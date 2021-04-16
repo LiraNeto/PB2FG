@@ -79,6 +79,7 @@ public class JSON2XML {
         fichaXMLConvertInitiative();
         fichaXMLConvertInventoryList();
         fichaXMLConvertLanguageList();
+        fichaXMLConvertKeyAbility();
         fichaXMLConvertLevel();
         fichaXMLConvertName();
         fichaXMLConvertProficiencies();
@@ -138,7 +139,7 @@ public class JSON2XML {
             String profLevel = ProficiencyLevelEnum
                     .getProficiencyLevelEnum(fichaJSON.getBuild().getLevel(), prof)
                     .getName();
-            int shield = Integer.parseInt(fichaJSON.getBuild().getAcTotal().getShieldBonus());
+            int shield = fichaJSON.getBuild().getAcTotal().getShieldBonus() != null ? Integer.parseInt(fichaJSON.getBuild().getAcTotal().getShieldBonus()) : 0;
             int shieldRaised = 0;
             int size = AncestryEnum
                     .getAncestry(fichaJSON.getBuild().getAncestry())
@@ -431,12 +432,22 @@ public class JSON2XML {
                 String profLevel = fichaJSON.getBuild().getProficiencies().getProficiency(weapon.getProf());
                 String profLevelSpecific = fichaJSON.getBuild().getSpecificProficiencies().getSpecificProficiency(weapon.getName());
 
-                WeaponXML weaponXML = WeaponEnum
-                        .getWeaponEnum(itemName)
-                        .getWeaponXML(weapon.getPot(), weapon.getStr(), weapon.getDie(), id,
-                                profLevelSpecific != null ? profLevelSpecific : profLevel );
+                WeaponEnum weaponEnum = WeaponEnum.getWeaponEnum(itemName);
+
+                WeaponXML weaponXML = weaponEnum
+                                        .getWeaponXML(weapon.getPot(), weapon.getStr(), weapon.getDie(), id,
+                                        profLevelSpecific != null ? profLevelSpecific : profLevel);
 
                 this.fichaXMLConvertWeaponList(weaponXML);
+
+                WeaponEnum weaponEnumT = WeaponEnum.getWeaponEnumT(itemName, weaponEnum);
+                if (weaponEnumT != WeaponEnum.WEAPON_NOT_FOUND){
+                    WeaponXML weaponXMLT = weaponEnum
+                            .getWeaponXML(weapon.getPot(), weapon.getStr(), weapon.getDie(), id,
+                                    profLevelSpecific != null ? profLevelSpecific : profLevel);
+
+                    this.fichaXMLConvertWeaponList(weaponXMLT);
+                }
             }
 
             for (Armor armor : fichaJSON.getBuild().getArmor()){
@@ -471,6 +482,49 @@ public class JSON2XML {
             }
 
             fichaXML.getCharacter().setLanguageList(languageList);
+        }
+    }
+
+    public void fichaXMLConvertKeyAbility(){
+        if (fichaXML != null && fichaJSON != null
+                && fichaJSON.getBuild() != null
+                && fichaJSON.getBuild().getKeyAbility() != null){
+            if (fichaXML.getCharacter() == null){
+                fichaXML.setCharacter(new Character());
+            }
+
+            ElementoString keyAbility;
+
+            switch (fichaJSON.getBuild().getKeyAbility()){
+                case "str":
+                    keyAbility = new ElementoString("strength");
+                    break;
+
+                case "dex":
+                    keyAbility = new ElementoString("dex");
+                    break;
+
+                case "con":
+                    keyAbility = new ElementoString("constitution");
+                    break;
+
+                case "int":
+                    keyAbility = new ElementoString("intelligence");
+                    break;
+
+                case "wis":
+                    keyAbility = new ElementoString("wisdom");
+                    break;
+
+                case "cha":
+                    keyAbility = new ElementoString("charisma");
+                    break;
+
+                default:
+                    keyAbility = null;
+            }
+
+            fichaXML.getCharacter().setKeyAbility(keyAbility);
         }
     }
 
@@ -552,36 +606,45 @@ public class JSON2XML {
 
             String proficiencyWeaponString = "Weapons:";
 
-            ProficiencyLevelEnum simpleProfLevel = ProficiencyLevelEnum
-                    .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getSimple());
-            String simpleProfLevelName = simpleProfLevel.getName().substring(0, 1).toUpperCase()
-                    + simpleProfLevel.getName().substring(1);
-            proficiencyWeaponString = proficiencyWeaponString.concat(" " + simpleProfLevelName + " in simple weapons.");
+            if (fichaJSON.getBuild().getProficiencies().getSimple() != 0) {
+                ProficiencyLevelEnum simpleProfLevel = ProficiencyLevelEnum
+                        .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getSimple());
+                String simpleProfLevelName = simpleProfLevel.getName().substring(0, 1).toUpperCase()
+                        + simpleProfLevel.getName().substring(1);
+                proficiencyWeaponString = proficiencyWeaponString.concat(" " + simpleProfLevelName + " in simple weapons.");
+            }
 
-            ProficiencyLevelEnum martialProfLevel = ProficiencyLevelEnum
-                    .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getMartial());
-            String martialProfLevelName = martialProfLevel.getName().substring(0, 1).toUpperCase()
-                    + martialProfLevel.getName().substring(1);
-            proficiencyWeaponString = proficiencyWeaponString.concat(" " + martialProfLevelName + " in martial weapons.");
+            if (fichaJSON.getBuild().getProficiencies().getMartial() != 0) {
+                ProficiencyLevelEnum martialProfLevel = ProficiencyLevelEnum
+                        .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getMartial());
+                String martialProfLevelName = martialProfLevel.getName().substring(0, 1).toUpperCase()
+                        + martialProfLevel.getName().substring(1);
+                proficiencyWeaponString = proficiencyWeaponString.concat(" " + martialProfLevelName + " in martial weapons.");
+            }
 
-            ProficiencyLevelEnum advancedProfLevel = ProficiencyLevelEnum
-                    .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getAdvanced());
-            String advancedProfLevelName = advancedProfLevel.getName().substring(0, 1).toUpperCase()
-                    + advancedProfLevel.getName().substring(1);
-            proficiencyWeaponString = proficiencyWeaponString.concat(" " + advancedProfLevelName + " in advanced weapons.");
+            if (fichaJSON.getBuild().getProficiencies().getAdvanced() != 0) {
+                ProficiencyLevelEnum advancedProfLevel = ProficiencyLevelEnum
+                        .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getAdvanced());
+                String advancedProfLevelName = advancedProfLevel.getName().substring(0, 1).toUpperCase()
+                        + advancedProfLevel.getName().substring(1);
+                proficiencyWeaponString = proficiencyWeaponString.concat(" " + advancedProfLevelName + " in advanced weapons.");
+            }
 
-            ProficiencyLevelEnum unarmedProfLevel = ProficiencyLevelEnum
-                    .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getUnarmed());
-            String unarmedProfLevelName = unarmedProfLevel.getName().substring(0, 1).toUpperCase()
-                    + unarmedProfLevel.getName().substring(1);
-            proficiencyWeaponString = proficiencyWeaponString.concat(" " + unarmedProfLevelName + " in unarmed weapons.");
+            if (fichaJSON.getBuild().getProficiencies().getUnarmed() != 0) {
+                ProficiencyLevelEnum unarmedProfLevel = ProficiencyLevelEnum
+                        .getProficiencyLevelEnum(fichaJSON.getBuild().getProficiencies().getUnarmed());
+                String unarmedProfLevelName = unarmedProfLevel.getName().substring(0, 1).toUpperCase()
+                        + unarmedProfLevel.getName().substring(1);
+                proficiencyWeaponString = proficiencyWeaponString.concat(" " + unarmedProfLevelName + " in unarmed weapons.");
+            }
 
-            Proficiency proficiencyWeapon = new Proficiency(proficiencyWeaponString);
+            if (!proficiencyWeaponString.equals("Weapons:")) {
+                Proficiency proficiencyWeapon = new Proficiency(proficiencyWeaponString);
+                ProficiencyList proficiencyList = new ProficiencyList();
+                proficiencyList.putEntry(proficiencyWeapon);
 
-            ProficiencyList proficiencyList = new ProficiencyList();
-            proficiencyList.putEntry(proficiencyWeapon);
-
-            fichaXML.getCharacter().setProficiencyList(proficiencyList);
+                fichaXML.getCharacter().setProficiencyList(proficiencyList);
+            }
         }
     }
 
@@ -990,7 +1053,6 @@ public class JSON2XML {
     }
 
     public void fichaXMLConvertWeaponList(WeaponXML weaponXML){
-        //TODO
         if (weaponXML == null){
             return;
         }

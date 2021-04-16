@@ -88,6 +88,9 @@ public class Character {
     @XmlElement(name = "languagelist")
     private LanguageList languageList;
 
+    @XmlElement(name = "keyability")
+    private ElementoString keyAbility;
+
     private ElementoNumber level;
 
     private ElementoString name;

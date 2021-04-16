@@ -11,7 +11,27 @@ import java.util.List;
 @AllArgsConstructor
 public enum AncestryEnum {
 
-    HUMAN ("Human", "Medium", 0, Arrays.asList("Human", "Humanoid"),
+    DWARF("Dwarf", "Medium", 0, Arrays.asList("Dwarf", "Humanoid"),
+            new ElementoWindowReference("referencerace",
+                    "reference.ancestries.dwarf@Pathfinder Second Edition Core Rules")),
+
+    ELF("Elf", "Medium", 0, Arrays.asList("Elf", "Humanoid"),
+            new ElementoWindowReference("referencerace",
+                    "reference.ancestries.elf@Pathfinder Second Edition Core Rules")),
+
+    GNOME("Gnome", "Medium", 0, Arrays.asList("Gnome", "Humanoid"),
+            new ElementoWindowReference("referencerace",
+                    "reference.ancestries.gnome@Pathfinder Second Edition Core Rules")),
+
+    GOBLIN("Goblin", "Medium", 0, Arrays.asList("Goblin", "Humanoid"),
+            new ElementoWindowReference("referencerace",
+                    "reference.ancestries.goblin@Pathfinder Second Edition Core Rules")),
+
+    HALFLING("Halfling", "Medium", 0, Arrays.asList("Halfling", "Humanoid"),
+            new ElementoWindowReference("referencerace",
+                    "reference.ancestries.halfling@Pathfinder Second Edition Core Rules")),
+
+    HUMAN("Human", "Medium", 0, Arrays.asList("Human", "Humanoid"),
             new ElementoWindowReference("referencerace",
                     "reference.ancestries.human@Pathfinder Second Edition Core Rules")),
 

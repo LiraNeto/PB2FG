@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "weaponlist")
 @Data
 @NoArgsConstructor
 public class WeaponXML {
@@ -69,5 +71,30 @@ public class WeaponXML {
         this.shortcut = shortcut;
         if (traits != null) this.traits = new ElementoString(traits);
         if (type != null) this.type = new ElementoNumber(type);
+    }
+
+    @Override
+    public String toString() {
+        return name.toString()
+                .toUpperCase()
+                .replace("\"", "")
+                .replace(" ", "_")
+                .replace("'", "") + "(" +
+                ammo + ", " +
+                attacks + ", " +
+                attackStat + ", " +
+                bonus + ", " +
+                carried + ", " +
+                critAtkRange + ", " +
+                damageList + ", " +
+                isIdentified + ", " +
+                maxAmmo + ", " +
+                name + ", " +
+                prof + ", " +
+                profLevel + ", " +
+                "new ElementoWindowReference(\"item\", null), " +
+                traits + ", " +
+                type +
+                "),\n";
     }
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
@@ -31,5 +32,16 @@ public class Damage {
         if (dice != null) this.dice = new ElementoDice(dice);
         if (stat != null) this.stat = new ElementoString(stat);
         if (type != null) this.type = new ElementoString(type);
+    }
+
+    @Override
+    public String toString() {
+        return "new Damage(" +
+                bonus + ", " +
+                critMult + ", " +
+                dice + ", " +
+                stat + ", " +
+                type +
+                "),";
     }
 }

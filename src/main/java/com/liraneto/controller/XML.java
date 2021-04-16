@@ -69,6 +69,39 @@ public class XML {
         }
     }
 
+    public void createFileXML(){
+        try
+        {
+            //Create JAXB Context
+            JAXBContext jaxbContext = JAXBContext.newInstance(FichaXML.class, Classe.class, Slot.class, Feat.class,
+                    Item.class, Language.class, Defense.class, Proficiency.class, Skill.class, SpecialAbility.class,
+                    Trait.class, WeaponXML.class, Damage.class);
+
+            //Create Marshaller
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            //Required formatting??
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, "ISO-8859-1");
+            jaxbMarshaller.setProperty("com.sun.xml.bind.characterEscapeHandler", new CharacterEscapeHandler() {
+                @Override
+                public void escape(char[] ch, int start, int length, boolean isAttVal,
+                                   Writer out) throws IOException {
+                    out.write(ch, start, length);
+                }
+            });
+
+            //Store XML to File
+            File file = new File("fichaXML.xml");
+
+            //Writes XML file to file-system
+            jaxbMarshaller.marshal(fichaXML, file);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void jaxbObjectToXML(String nomeArquivo)
     {
         try
@@ -104,6 +137,16 @@ public class XML {
                 xmlString = xmlString.replace("</p>", "&lt;/p&gt;");
                 xmlString = xmlString.replace("<b>", "&lt;b&gt;");
                 xmlString = xmlString.replace("</b>", "&lt;/b&gt;");
+                xmlString = xmlString.replace("<h>", "&lt;h&gt;");
+                xmlString = xmlString.replace("</h>", "&lt;/h&gt;");
+                xmlString = xmlString.replace("<table>", "&lt;table&gt;");
+                xmlString = xmlString.replace("</table>", "&lt;/table&gt;");
+                xmlString = xmlString.replace("<tr>", "&lt;tr&gt;");
+                xmlString = xmlString.replace("</tr>", "&lt;/tr&gt;");
+                xmlString = xmlString.replace("<td colspan=\"11\">", "&lt;td colspan=\"11\"&gt;");
+                xmlString = xmlString.replace("<td colspan=\"2\">", "&lt;td colspan=\"2\"&gt;");
+                xmlString = xmlString.replace("<td>", "&lt;td&gt;");
+                xmlString = xmlString.replace("</td>", "&lt;/td&gt;");
                 jaxbContext = JAXBContext.newInstance(elementoXMLEnum);
 
                 Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
