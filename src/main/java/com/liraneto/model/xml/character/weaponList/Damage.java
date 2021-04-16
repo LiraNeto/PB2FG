@@ -3,7 +3,7 @@ package com.liraneto.model.xml.character.weaponList;
 import com.liraneto.model.xml.elementosType.ElementoDice;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Getter
+@Data
 @NoArgsConstructor
 public class Damage {
     private ElementoNumber bonus;

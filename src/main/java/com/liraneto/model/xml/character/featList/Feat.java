@@ -3,14 +3,19 @@ package com.liraneto.model.xml.character.featList;
 import com.liraneto.model.xml.elementosType.ElementoFormattedText;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Getter
+@XmlRootElement(name = "feat")
+@NoArgsConstructor
+@Data
 public class Feat {
 
     private ElementoString action;
@@ -53,5 +58,26 @@ public class Feat {
         if (shortBenefits != null) this.shortBenefits = new ElementoString(shortBenefits);
         if (traits != null) this.traits = new ElementoString(traits);
         if (trigger != null) this.trigger = new ElementoString(trigger);
+    }
+
+    @Override
+    public String toString() {
+        return name.toString()
+                .toUpperCase()
+                .replace("\"", "")
+                .replace(" ", "_")
+                .replace("'", "") + "(" +
+                action + ", " +
+                effectsBenefits + ", " +
+                filterCategory + ", " +
+                level + ", " +
+                levelApplied + ", " +
+                locked + ", " +
+                name + ", " +
+                preRequisites + ", " +
+                shortBenefits + ", " +
+                traits + ", " +
+                trigger +
+                "),\n";
     }
 }

@@ -38,6 +38,6 @@ public class Ability {
         this.damage = ElementoNumber.elementoNumberZero();
         this.miscMod = ElementoNumber.elementoNumberZero();
         this.score = new ElementoNumber(score);
-        this.tempMod = ElementoNumber.elementoNumberZero();
+        this.tempMod = new ElementoNumber(score < 10 ? score-10 : 0);
     }
 }

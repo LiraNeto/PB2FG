@@ -57,7 +57,7 @@ public class Build {
 
     private SpecificProficiencies specificProficiencies;
 
-    private List<Weapon> weapons;
+    private List<WeaponJSON> weapons;
 
     private Money money;
 

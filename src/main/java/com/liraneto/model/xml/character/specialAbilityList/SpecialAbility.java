@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "SpecialAbility")
 @Getter
 @NoArgsConstructor
 public class SpecialAbility {
@@ -42,5 +44,23 @@ public class SpecialAbility {
         if (requirements != null) this.requirements = new ElementoFormattedText(requirements);
         if (source != null) this.source = new ElementoString(source);
         if (text != null) this.text = new ElementoFormattedText(text);
+    }
+
+    @Override
+    public String toString() {
+        return name.toString()
+                .toUpperCase()
+                .replace("\"", "")
+                .replace(" ", "_")
+                .replace("'", "") + "(" +
+                className + ", " +
+                level + ", " +
+                levelApplied + ", " +
+                locked + ", " +
+                name + ", " +
+                requirements + ", " +
+                source + ", " +
+                text +
+                "),\n";
     }
 }

@@ -27,4 +27,9 @@ public class DamageList {
         String key = "id-" + String.format("%05d", id++);
         damageList.add(new JAXBElement<Damage>(new QName(key), Damage.class, value));
     }
+
+    public DamageList (List<Damage> damageList){
+        for (Damage damage : damageList)
+            this.putEntry(damage);
+    }
 }

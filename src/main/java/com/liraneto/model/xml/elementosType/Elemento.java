@@ -1,5 +1,7 @@
 package com.liraneto.model.xml.elementosType;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 

@@ -21,10 +21,10 @@ public class WeaponList {
     private Integer id = 1;
 
     @XmlAnyElement
-    List<JAXBElement<Weapon>> weaponList = new ArrayList<>();
+    List<JAXBElement<WeaponXML>> weaponList = new ArrayList<>();
 
-    public void putEntry(Weapon value){
+    public void putEntry(WeaponXML value){
         String key = "id-" + String.format("%05d", id++);
-        weaponList.add(new JAXBElement<Weapon>(new QName(key), Weapon.class, value));
+        weaponList.add(new JAXBElement<WeaponXML>(new QName(key), WeaponXML.class, value));
     }
 }

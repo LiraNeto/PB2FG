@@ -135,7 +135,11 @@ public class Item {
 
     @Override
     public String toString() {
-        return "new Item( " +
+        return name.toString()
+                .toUpperCase()
+                .replace("\"", "")
+                .replace(" ", "_")
+                .replace("'", "") + "(" +
                 ac + ", " +
                 acSpecial + ", " +
                 armorStrength + ", " +
@@ -168,6 +172,6 @@ public class Item {
                 traits + ", " +
                 type + ", " +
                 weight +
-                ");";
+                "),\n";
     }
 }

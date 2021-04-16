@@ -18,4 +18,20 @@ public class SpecificProficiencies {
     private List<String> master;
 
     private List<String> legendary;
+
+    public String getSpecificProficiency (String name){
+        if (trained.contains(name))
+            return "trained";
+
+        if (expert.contains(name))
+            return "expert";
+
+        if (master.contains(name))
+            return "master";
+
+        if (legendary.contains(name))
+            return "legendary";
+
+        return null;
+    }
 }

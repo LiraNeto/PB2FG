@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Weapon {
+public class WeaponJSON {
     private String name;
 
     private int qty;

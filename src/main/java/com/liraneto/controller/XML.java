@@ -13,7 +13,7 @@ import com.liraneto.model.xml.character.skillList.Skill;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
 import com.liraneto.model.xml.character.traitList.Trait;
 import com.liraneto.model.xml.character.weaponList.Damage;
-import com.liraneto.model.xml.character.weaponList.Weapon;
+import com.liraneto.model.xml.character.weaponList.WeaponXML;
 import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,10 +21,10 @@ import lombok.NoArgsConstructor;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
+import javax.xml.bind.Unmarshaller;
+import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,7 +38,7 @@ public class XML {
             //Create JAXB Context
             JAXBContext jaxbContext = JAXBContext.newInstance(FichaXML.class, Classe.class, Slot.class, Feat.class,
                     Item.class, Language.class, Defense.class, Proficiency.class, Skill.class, SpecialAbility.class,
-                    Trait.class, Weapon.class, Damage.class);
+                    Trait.class, WeaponXML.class, Damage.class);
 
             //Create Marshaller
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -92,6 +92,26 @@ public class XML {
 
         } catch (JAXBException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void generateEnum(Class elementoXMLEnum, List<String> xmlStringList){
+
+        for (String xmlString : xmlStringList ) {
+            JAXBContext jaxbContext;
+            try {
+                xmlString = xmlString.replace("<p>", "&lt;p&gt;");
+                xmlString = xmlString.replace("</p>", "&lt;/p&gt;");
+                xmlString = xmlString.replace("<b>", "&lt;b&gt;");
+                xmlString = xmlString.replace("</b>", "&lt;/b&gt;");
+                jaxbContext = JAXBContext.newInstance(elementoXMLEnum);
+
+                Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+                System.out.println(elementoXMLEnum.cast(jaxbUnmarshaller.unmarshal(new StringReader(xmlString))).toString());
+            } catch (JAXBException e) {
+                e.printStackTrace();
+            }
         }
     }
 

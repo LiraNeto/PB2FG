@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "trait")
 @Getter
 @NoArgsConstructor
 public class Trait {
@@ -31,5 +33,21 @@ public class Trait {
         if (name != null) this.name = new ElementoString(name);
         if (source != null) this.source = new ElementoString(source);
         if (text != null) this.text = new ElementoFormattedText(text);
+    }
+
+    @Override
+    public String toString() {
+        return name.toString()
+                .toUpperCase()
+                .replace("\"", "")
+                .replace(" ", "_")
+                .replace("'", "")
+                .replace("HERITAGE_-_", "") + "(" +
+                levelApplied + ", " +
+                locked + ", " +
+                name + ", " +
+                source + ", " +
+                text +
+                "),\n";
     }
 }

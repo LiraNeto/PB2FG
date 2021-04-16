@@ -19,7 +19,7 @@ public enum ClasseEnum {
 
     public static ClasseEnum getClasseEnum (String name){
         for (ClasseEnum classeEnum : ClasseEnum.values()){
-            if (classeEnum.getName().equals(name))
+            if (classeEnum.getName().equalsIgnoreCase(name))
                 return classeEnum;
         }
         return CLASSE_NOT_FOUND;

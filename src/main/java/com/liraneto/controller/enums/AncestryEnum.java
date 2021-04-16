@@ -29,7 +29,7 @@ public enum AncestryEnum {
 
     public static AncestryEnum getAncestry (String name){
         for (AncestryEnum ancestryEnum : AncestryEnum.values()){
-            if (ancestryEnum.getName().equals(name))
+            if (ancestryEnum.getName().equalsIgnoreCase(name))
                 return ancestryEnum;
         }
         return ANCESTRY_NOT_FOUND;

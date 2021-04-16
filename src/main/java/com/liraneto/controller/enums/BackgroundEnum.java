@@ -22,7 +22,7 @@ public enum BackgroundEnum {
 
     public static BackgroundEnum getBackgoundEnum (String name){
         for (BackgroundEnum backgroundEnum : BackgroundEnum.values()){
-            if (backgroundEnum.getName().equals(name))
+            if (backgroundEnum.getName().equalsIgnoreCase(name))
                 return backgroundEnum;
         }
 
