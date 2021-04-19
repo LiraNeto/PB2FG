@@ -63,13 +63,13 @@ public class App
 {
     public static void main( String[] args )
     {
-//        try {
-//            generateItemConstructor();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            generateItemConstructor();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 //        Scanner sc = new Scanner(System.in); //System.in is a standard input stream
 //        System.out.print("Enter a string: ");
@@ -87,20 +87,20 @@ public class App
 //        XML xml = new XML(fichaXml);
 //        xml.createFileXML();
 
-        GuiForm guiForm = new GuiForm();
-
-        guiForm.setFrame(new JFrame("PB2FG"));
-
-        ImageIcon img = new ImageIcon("D:\\Documentos\\Git\\iconfinder_die_1055072.png");
-
-        guiForm.getFrame().setContentPane(guiForm.getPanelMain());
-        guiForm.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiForm.getFrame().setPreferredSize(new Dimension(230,160));
-        guiForm.getFrame().setResizable(false);
-        guiForm.getFrame().setIconImage(img.getImage());
-        guiForm.getFrame().pack();
-        guiForm.getFrame().setVisible(true);
-        guiForm.getFrame().setLocationRelativeTo(null);
+//        GuiForm guiForm = new GuiForm();
+//
+//        guiForm.setFrame(new JFrame("PB2FG"));
+//
+//        ImageIcon img = new ImageIcon("D:\\Documentos\\Git\\iconfinder_die_1055072.png");
+//
+//        guiForm.getFrame().setContentPane(guiForm.getPanelMain());
+//        guiForm.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        guiForm.getFrame().setPreferredSize(new Dimension(230,160));
+//        guiForm.getFrame().setResizable(false);
+//        guiForm.getFrame().setIconImage(img.getImage());
+//        guiForm.getFrame().pack();
+//        guiForm.getFrame().setVisible(true);
+//        guiForm.getFrame().setLocationRelativeTo(null);
     }
 
     public static Character generateCharacter(){
@@ -307,7 +307,7 @@ public class App
             xmlString += line;
         }
         xmlString = xmlString.replace("\r\n", "");
-        List<String> xmlStringList = Arrays.asList(xmlString.split("<splin>"));
+        List<String> xmlStringList = Arrays.asList(xmlString.split("<split>"));
 
 
         XML.generateEnum(Spells.class, xmlStringList);
