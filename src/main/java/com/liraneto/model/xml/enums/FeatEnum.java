@@ -1,4 +1,4 @@
-package com.liraneto.controller.enums;
+package com.liraneto.model.xml.enums;
 
 import com.liraneto.model.xml.character.featList.Feat;
 import lombok.AllArgsConstructor;

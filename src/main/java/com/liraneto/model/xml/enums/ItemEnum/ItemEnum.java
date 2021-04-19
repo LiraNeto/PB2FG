@@ -1,4 +1,4 @@
-package com.liraneto.controller.enums.ItemEnum;
+package com.liraneto.model.xml.enums.ItemEnum;
 
 import com.liraneto.model.xml.character.inventoryList.Item;
 import lombok.AllArgsConstructor;

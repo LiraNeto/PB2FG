@@ -1,6 +1,5 @@
-package com.liraneto.controller.enums;
+package com.liraneto.model.xml.enums;
 
-import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
 import com.liraneto.model.xml.character.traitList.Trait;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

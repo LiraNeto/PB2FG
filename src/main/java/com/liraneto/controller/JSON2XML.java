@@ -1,8 +1,5 @@
 package com.liraneto.controller;
 
-import com.liraneto.controller.enums.*;
-import com.liraneto.controller.enums.ItemEnum.ItemEnum;
-import com.liraneto.controller.enums.ItemEnum.WeaponEnum;
 import com.liraneto.model.json.Build.Armor;
 import com.liraneto.model.json.Build.WeaponJSON;
 import com.liraneto.model.json.FichaJSON;
@@ -47,6 +44,9 @@ import com.liraneto.model.xml.character.weaponList.WeaponXML;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
 import com.liraneto.model.xml.elementosType.ElementoWindowReference;
+import com.liraneto.model.xml.enums.*;
+import com.liraneto.model.xml.enums.ItemEnum.ItemEnum;
+import com.liraneto.model.xml.enums.ItemEnum.WeaponEnum;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 

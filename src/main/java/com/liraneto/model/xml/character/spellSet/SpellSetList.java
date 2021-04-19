@@ -1,5 +1,6 @@
-package com.liraneto.model.xml.character.weaponList;
+package com.liraneto.model.xml.character.spellSet;
 
+import com.liraneto.model.xml.character.spellSet.SpellPerLevel.actionsList.Action;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -11,36 +12,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "damagelist")
 @Data
 @NoArgsConstructor
-public class DamageList {
+public class SpellSetList {
 
     @XmlTransient
     private Integer id = 1;
 
     @XmlAnyElement
-    List<JAXBElement<Damage>> damageList = new ArrayList<>();
+    List<JAXBElement<SpellSet>> spellSetList = new ArrayList<>();
 
-    @XmlElement(name = "damage")
-    List<Damage> damageLista = new ArrayList<>();
+    List<SpellSet> spellSetLista = new ArrayList<>();
 
-    public void putEntry(Damage value){
+    public void putEntry(SpellSet value){
         String key = "id-" + String.format("%05d", id++);
-        damageList.add(new JAXBElement<Damage>(new QName(key), Damage.class, value));
+        spellSetList.add(new JAXBElement<SpellSet>(new QName(key), SpellSet.class, value));
     }
 
-    public DamageList (List<Damage> damageList){
-        for (Damage damage : damageList)
-            this.putEntry(damage);
+    public SpellSetList(List<SpellSet> spellSetList){
+        for (SpellSet spellSet : spellSetList)
+            this.putEntry(spellSet);
     }
 
     @Override
     public String toString(){
         String returnString = "Arrays.asList(";
 
-        for (Damage damage : damageLista){
-            returnString = returnString.concat(damage.toString());
+        for (SpellSet spellSet : spellSetLista){
+            returnString = returnString.concat(spellSet.toString());
         }
 
         returnString = StringUtils.removeEnd(returnString, ",");

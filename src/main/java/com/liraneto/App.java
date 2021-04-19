@@ -1,10 +1,6 @@
 package com.liraneto;
 
-import com.liraneto.controller.JSON;
-import com.liraneto.controller.JSON2XML;
 import com.liraneto.controller.XML;
-import com.liraneto.model.json.FichaJSON;
-import com.liraneto.model.xml.FichaXML;
 import com.liraneto.model.xml.character.Character;
 import com.liraneto.model.xml.character.abilities.Abilities;
 import com.liraneto.model.xml.character.ac.AC;
@@ -38,30 +34,26 @@ import com.liraneto.model.xml.character.skillPoints.SkillPoints;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbility;
 import com.liraneto.model.xml.character.specialAbilityList.SpecialAbilityList;
 import com.liraneto.model.xml.character.speed.Speed;
+import com.liraneto.model.xml.character.spellSet.SpellPerLevel.Spells;
 import com.liraneto.model.xml.character.spellSet.SpellSet;
 import com.liraneto.model.xml.character.temp.Temp;
 import com.liraneto.model.xml.character.traitList.Trait;
 import com.liraneto.model.xml.character.traitList.TraitList;
 import com.liraneto.model.xml.character.wealth.Wealth;
-import com.liraneto.model.xml.character.weaponList.Damage;
-import com.liraneto.model.xml.character.weaponList.DamageList;
-import com.liraneto.model.xml.character.weaponList.WeaponList;
-import com.liraneto.model.xml.character.weaponList.WeaponXML;
 import com.liraneto.model.xml.elementosType.ElementoNumber;
 import com.liraneto.model.xml.elementosType.ElementoString;
 import com.liraneto.model.xml.elementosType.ElementoToken;
 import com.liraneto.model.xml.elementosType.ElementoWindowReference;
-import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
+import com.liraneto.view.GuiForm;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import java.io.*;
-import java.net.URL;
-import java.nio.charset.Charset;
+import javax.swing.*;
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Hello world!
@@ -79,21 +71,36 @@ public class App
 //            e.printStackTrace();
 //        }
 
-        Scanner sc = new Scanner(System.in); //System.in is a standard input stream
-        System.out.print("Enter a string: ");
-        String id = sc.nextLine();              //reads string
+//        Scanner sc = new Scanner(System.in); //System.in is a standard input stream
+//        System.out.print("Enter a string: ");
+//        String id = sc.nextLine();              //reads string
+//
+//        //FichaJSON fichaJSON = JSON.getFichaJSONFromFile("D:\\Documentos\\Git\\alquimista.json");
+//        FichaJSON fichaJSON = JSON.getFichaJSONFromURL(id);
+//
+//        JSON2XML conversor = new JSON2XML();
+//        conversor.setFichaJSON(fichaJSON);
+//        conversor.ConverterJSON2XML();
+//
+//        FichaXML fichaXml = conversor.getFichaXML();
+//
+//        XML xml = new XML(fichaXml);
+//        xml.createFileXML();
 
-        //FichaJSON fichaJSON = JSON.getFichaJSONFromFile("D:\\Documentos\\Git\\alquimista.json");
-        FichaJSON fichaJSON = JSON.getFichaJSONFromURL(id);
+        GuiForm guiForm = new GuiForm();
 
-        JSON2XML conversor = new JSON2XML();
-        conversor.setFichaJSON(fichaJSON);
-        conversor.ConverterJSON2XML();
+        guiForm.setFrame(new JFrame("PB2FG"));
 
-        FichaXML fichaXml = conversor.getFichaXML();
+        ImageIcon img = new ImageIcon("D:\\Documentos\\Git\\iconfinder_die_1055072.png");
 
-        XML xml = new XML(fichaXml);
-        xml.createFileXML();
+        guiForm.getFrame().setContentPane(guiForm.getPanelMain());
+        guiForm.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        guiForm.getFrame().setPreferredSize(new Dimension(230,160));
+        guiForm.getFrame().setResizable(false);
+        guiForm.getFrame().setIconImage(img.getImage());
+        guiForm.getFrame().pack();
+        guiForm.getFrame().setVisible(true);
+        guiForm.getFrame().setLocationRelativeTo(null);
     }
 
     public static Character generateCharacter(){
@@ -290,12 +297,20 @@ public class App
 
     public static void generateItemConstructor() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("D:\\Documentos\\Git\\upload.txt"));
+        String line = "";
+        String xmlString = "";
 
-        String xmlString = reader.readLine();
-        List<String> xmlStringList = Arrays.asList(xmlString.split("<split>"));
+        while ((line = reader.readLine()) != null) {
+            if (line.isEmpty()) {
+                break;
+            }
+            xmlString += line;
+        }
+        xmlString = xmlString.replace("\r\n", "");
+        List<String> xmlStringList = Arrays.asList(xmlString.split("<splin>"));
 
 
-        XML.generateEnum(Item.class, xmlStringList);
+        XML.generateEnum(Spells.class, xmlStringList);
     }
 
 

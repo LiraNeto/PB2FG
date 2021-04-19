@@ -2,6 +2,7 @@ package com.liraneto.model.json.Build;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.liraneto.model.json.Build.spellCasters.SpellCasters;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -63,7 +64,7 @@ public class Build {
 
     private List<Armor> armor;
 
-    private List<String> spellCasters;
+    private List<SpellCasters> spellCasters;
 
     private List<String> formula;
 

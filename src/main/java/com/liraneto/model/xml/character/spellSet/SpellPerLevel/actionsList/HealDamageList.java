@@ -1,4 +1,4 @@
-package com.liraneto.model.xml.character.weaponList;
+package com.liraneto.model.xml.character.spellSet.SpellPerLevel.actionsList;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,27 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "damagelist")
 @Data
 @NoArgsConstructor
-public class DamageList {
+public class ActionListType {
 
     @XmlTransient
     private Integer id = 1;
 
     @XmlAnyElement
-    List<JAXBElement<Damage>> damageList = new ArrayList<>();
+    List<JAXBElement<Action>> actionList = new ArrayList<>();
 
     @XmlElement(name = "damage")
-    List<Damage> damageLista = new ArrayList<>();
+    List<Action> actionLista = new ArrayList<>();
 
-    public void putEntry(Damage value){
+    public void putEntry(Action value){
         String key = "id-" + String.format("%05d", id++);
-        damageList.add(new JAXBElement<Damage>(new QName(key), Damage.class, value));
+        actionList.add(new JAXBElement<Action>(new QName(key), Action.class, value));
     }
 
-    public DamageList (List<Damage> damageList){
-        for (Damage damage : damageList)
+    public ActionListType(List<Action> actionList){
+        for (Action damage : actionList)
             this.putEntry(damage);
     }
 
@@ -39,8 +38,8 @@ public class DamageList {
     public String toString(){
         String returnString = "Arrays.asList(";
 
-        for (Damage damage : damageLista){
-            returnString = returnString.concat(damage.toString());
+        for (Action action : actionLista){
+            returnString = returnString.concat(action.toString());
         }
 
         returnString = StringUtils.removeEnd(returnString, ",");
