@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class Action {
+public class HealDamage {
     private ElementoNumber bonus;
 
     private ElementoDice dice;
@@ -32,7 +33,7 @@ public class Action {
 
     private ElementoString type;
 
-    public Action(Object bonus, Object dice, Object stat, Object diceStatMax, Object statMax, Object statMult, Object type) {
+    public HealDamage(Object bonus, Object dice, Object stat, Object diceStatMax, Object statMax, Object statMult, Object type) {
         if (bonus != null) this.bonus = new ElementoNumber(bonus);
         if (dice != null) this.dice = new ElementoDice(dice);
         if (stat != null) this.diceStat = new ElementoString(stat);
@@ -44,13 +45,14 @@ public class Action {
 
     @Override
     public String toString() {
-        return "new Action(" +
+        return "new HealDamage(" +
                 bonus + ", " +
                 dice + ", " +
                 diceStat + ", " +
                 diceStatMax + ", " +
                 statMax + ", " +
                 statMult + ", " +
+                type +
                 "), ";
     }
 }

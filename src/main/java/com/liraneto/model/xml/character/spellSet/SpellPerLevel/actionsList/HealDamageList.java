@@ -13,24 +13,24 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class ActionListType {
+public class HealDamageList {
 
     @XmlTransient
     private Integer id = 1;
 
     @XmlAnyElement
-    List<JAXBElement<Action>> actionList = new ArrayList<>();
+    List<JAXBElement<HealDamage>> healDamageList = new ArrayList<>();
 
-    @XmlElement(name = "damage")
-    List<Action> actionLista = new ArrayList<>();
+    @XmlElement(name = "id")
+    List<HealDamage> healDamageLista = new ArrayList<>();
 
-    public void putEntry(Action value){
+    public void putEntry(HealDamage value){
         String key = "id-" + String.format("%05d", id++);
-        actionList.add(new JAXBElement<Action>(new QName(key), Action.class, value));
+        healDamageList.add(new JAXBElement<HealDamage>(new QName(key), HealDamage.class, value));
     }
 
-    public ActionListType(List<Action> actionList){
-        for (Action damage : actionList)
+    public HealDamageList(List<HealDamage> healDamageList){
+        for (HealDamage damage : healDamageList)
             this.putEntry(damage);
     }
 
@@ -38,11 +38,11 @@ public class ActionListType {
     public String toString(){
         String returnString = "Arrays.asList(";
 
-        for (Action action : actionLista){
-            returnString = returnString.concat(action.toString());
+        for (HealDamage healDamage : healDamageLista){
+            returnString = returnString.concat(healDamage.toString());
         }
 
-        returnString = StringUtils.removeEnd(returnString, ",");
+        returnString = StringUtils.removeEnd(returnString, ", ");
 
         return returnString.concat(")");
     }
